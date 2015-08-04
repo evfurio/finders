@@ -1,0 +1,21 @@
+module BrowserModules
+    include ImpulseHeroFeaturedRightColumnFinder
+    include ImpulseHTMLFinder
+    include ImpulseCartFinder
+    include ImpulseAccountInfoFinder
+    include ImpulseCheckoutFinder
+    include ImpulseOrderHistoryFinder
+    include ImpulseProductDetailFinder
+    include ImpulseSearchFinder
+    include ImpulseHeaderFooterFinder
+    include ImpulseStoreFrontReportsFinder
+    include ImpulseFraudFinder
+    include ImpulseCommunityFinder
+    include ImpulseForumsFinder
+    include ImpulseDeveloperFinder
+    include ImpulseSupportFinder
+    include ImpulsePayPalFinder
+    include ImpulseAboutFinder
+    include ImpulseRedemptionFinder
+    include ImpulseOverrideFinder
+end

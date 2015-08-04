@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+    <head>
+    </head>
+
+    <body>
+        <section id="account_info_finder">
+
+            <li id="login_link">
+                <!-- log_in_link - Return the "Login" link -->
+                <a href="/Account/Login">Login</a>
+                <!-- log_in_link - Return the "Logout" link -->
+                <a href="/Account/Logout">Logout</a>
+                <!-- log_into_my_account_button - Return "Log into My Account" button -->
+                <button>Log Into My Account</button>
+            </li>
+
+            <!-- email_address_field - Returns the "Email Address" field. -->
+            <input id="Username" type="email" value=""/>
+
+            <!-- password_field - Returns the "Password" field. -->
+            <input id="Password" type="password"/>
+
+            <!-- log_in_button - Returns the "Log In" button.-->
+            <section id="log_in_form"><button>Log In</button></section>
+
+
+            <!-- first_name_field - Returns the "First Name" field. -->
+            <input id="FirstName" type="text" value=""/>
+
+            <!-- last_name_field - Returns the "Last Name" field. -->
+            <input id="LastName" type="text" value=""/>
+
+            <!-- address_1_field - Returns the "Address 1" field. -->
+            <input id="Line1" type="text" value=""/>
+
+            <!-- address_2_field - Returns the "Address 2 (optional)" field. -->
+            <input id="Line2" type="text" value=""/>
+
+            <!-- city_field - Returns the "City" field. -->
+            <input id="City" type="text" value=""/>
+
+            <!-- state_province_selector - Returns the "State" selector. -->
+            <select id="State">
+                <option value="-1">Select a state</option>
+                <option value="IA">Iowa</option>
+            </select>
+
+            <!-- zip_postal_code_field - Returns the "Zip/Postal Code" field. -->
+            <input id="PostalCode" type="text" value=""/>
+
+            <!-- country_selector - Returns the "Country" selector. -->
+            <select id="CountryCode">
+                <option value="CA">Canada</option>
+                <option value="US" selected="selected">United States of America</option>
+            </select>
+
+            <!-- phone_number_field - Returns the "Phone Number" field. -->
+            <input id="PhoneNumber" type="number" value=""/>
+
+            <!-- email_address_field - Returns the "Purchaser's Email" field. -->
+            <input id="Email" type="email" -value=""/>
+
+            <!-- confirm_email_address_field - Returns the "Confirm Email" field. -->
+            <input id="EmailConfirm" type="email" value=""/>
+
+            <!-- credit_card_selector - Returns the credit card type selector -->
+            <select id="CardType">
+                <option value="b0651503-8e55-4e86-8988-6a48d06d04e6">Visa</option>
+                <option value="d7ed1a44-2905-42ea-aacf-cb7f21a45ed6">Discover</option>
+            </select>
+
+            <!-- credit_card_month_selector - Returns the credit card month selector -->
+            <select id="ExpireMonth">
+                <option value="1">01-January</option>
+                <option value="12">12-December</option>
+            </select>
+
+            <!-- credit_card_year_selector - credit_card_year_selector -->
+            <select id="ExpireYear">
+                <option value="2011">2011</option>
+                <option value="2031">2031</option>
+            </select>
+
+            <!-- credit_card_number_field - Returns the credit card number field. -->
+            <input id="CardNumber" type="number" value=""/>
+
+        </section>
+        <section id="cart_finder">
+
+            <!-- cart_list - Returns the list of items (GameStopMobileCartList) -->
+            <table id="order_summary">
+                <tbody>
+                    <tr>
+                        <td class="cart_item">
+                            <strong>
+                                <a href="">Product Name 1 HERE</a>
+                            </strong>
+                        </td>
+                        <td class="cart_delete">
+                            <a href="">x</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cart_item">
+                            <strong>
+                                <a href="">Product Name 2 HERE</a>
+                            </strong>
+                        </td>
+                        <td class="cart_delete">
+                            <a href="">x</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- nav_cart_button - Returns "View Cart" button -->
+            <li id="nav_cart"><a href="">View Cart</a></li>
+
+            <!-- shopping_cart_label - Returns the "Shopping Cart" label -->
+            <div id="cartPlaceholder"><section id=""><h3>Shopping Cart</h3></section></div>
+
+            <!-- shopping_cart_edit_link - Returns the "Edit Cart" link -->
+            <!-- shopping_cart_edit_done_link - Returns the "Done" link -->
+            <div id="cartPlaceholder">
+                <a id="edit_cart" href="">Edit Cart</a>
+                <a id="edit_cart_done" href="">Done</a>
+                <h3>Shopping Cart</h3>
+            </div>
+
+            <!-- empty_cart_label - Returns the empty cart label -->
+            <div class="empty_cart"/>
+
+        </section>
+        <section id="checkout_finder">
+
+            <!-- continue_secure_checkout_button - Returns the "Continue Secure Checkout" button -->
+            <div class="secure_checkout content_group"><button>Continue Secure Checkout"</button></div>
+
+            <!-- continue_checkout_button - Returns the "Continue Checkout" button -->
+            <button>Continue Checkout</button>
+
+            <!-- complete_checkout_button - Returns the "Complete Checkout" button -->
+            <button>Complete Checkout</button>
+
+            <!-- seventeen_or_older_button - Returns the "I am 17 years of age or older" button from the age gate. -->
+            <button id="over_17">I'm 17 years old or older</button>
+
+            <!-- TODO: ******* do I need a form in this one below, or just a find? **** -->
+            <!-- buy_as_guest_button - Returns the "Check Out as a Guest" button.-->
+            <li id="guest_checkout_link"><form method="post"><button>Check Out as a Guest</button></form></li>
+
+            <!-- checkout_type_label - Returns the "How Do You Want To Checkout" label -->
+            <section id="checkout_type"><h3>How Do You Want To Checkout?</h3></section>
+
+            <!-- shipping_address_label - Returns the "Shipping Address" label. -->
+            <section id="shipping_address"><h3>Shipping Address</h3><div id="shipping_address_form"/></section>
+
+            <!-- billing_address_label - Returns the "Billing Address" label. -->
+            <section id="shipping_address"><h3>Billing Address</h3><div id="billing_address_form"/></section>
+
+            <!-- same_address_checkbox -  returns "My billing and shipping address are teh same" checkbox -->
+            <input id="BillingSame" type=checkbox value="false"/>
+
+            <!-- handling_options_label - Returns the "Handling Options" label. -->
+            <section id="handling_options"><h3>Handling Options</h3></section>
+
+            <!-- handling_method_buttons - Returns the "Shipping & Handling Method" radio button table. -->
+            <div id="d72c222f-cb91-43a0-9cea-dbd1b3c8ac37">
+                <table id="standard_handling_method_select">
+                    <tbody>
+                        <tr class="selected_row">
+                            <th scope="row">
+                                <input type="radio" value="ONE" checked/>
+                            </th>
+                            <td>
+                                <strong>USA Value</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <input type="radio" value="TWO"/>
+                            </th>
+                            <td>
+                                <strong>USA Ground</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input id="XXYYZZ_ShippingMethodId" type="hidden" value="ONE"/>
+            </div>
+
+            <!-- gift_message_field - Returns the "Optional Gift Message" textarea -->
+            <textarea id="shoppingCartShipGroups_XXYYZZ"></textarea>
+
+            <!-- order_confirmation_label -  Returns the order confirmation label. -->
+            <!-- order_confirmation_number_label - Returns the order confirmation number label. -->
+            <section class="order_confirm_text">
+                <p>
+                    Your order number is
+                    <strong>5110607083849264</strong>
+                    . We've also sent a copy of your receipt to
+                    <strong>b@gs.com</strong>
+                    .
+                </p>
+            </section>
+
+        </section>
+        <section id="product_detail_finder">
+
+            <!-- product_title_label - Returns the product title label from the product details page. -->
+            <div class="product_description"><h2>Product Name</h2></div>
+
+            <!-- product_price_list - Returns the product price list -->
+            <section class="product_buy">
+                <table>
+                    <tbody>
+                        <!-- at - returns a GameStopMobilePriceListItem -->
+                        <tr>
+                            <th>
+                                <!-- purchase_type_label - Return the purchase type label -->
+                                <h3>Buy New</h3>
+                            </th>
+                            <td>
+                                <div class="select-price">
+                                    <form method="post">
+                                        <!-- add_to_cart_button - Returns the add to cart price button -->
+                                        <button>$.$$</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- at - returns a GameStopMobilePriceListItem -->
+                        <tr>
+                            <th>
+                                <!-- purchase_type_label - Return the purchase type label -->
+                                <h3>Buy New</h3>
+                            </th>
+                            <td>
+                                <div class="select-price">
+                                    <form method="post">
+                                        <!-- add_to_cart_button - Returns the add to cart price button -->
+                                        <button>$$.$$</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </section>
+        <section id="search_finder">
+
+            <!-- search_field - Returns the "Search" text field. -->
+            <form method="post">
+                <input id="mobile_search"/>
+            </form>
+
+            <!-- product_list - Returns the list of products (GameStopMobileProductList) -->
+            <div id="resultsPlaceholder">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h2 class="results_title">
+                                    <!-- name_link - Returns the link to the product name. -->
+                                    <a href="">Product 1</a>
+                                <h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h2 class="results_title">
+                                    <!-- name_link - Returns the link to the product name. -->
+                                    <a href="">Product 2</a>
+                                </h2>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </body>
+</html>

@@ -1,0 +1,208 @@
+###############################################################################
+# READ ME!!!!! READ ME!!!!! READ ME!!!!! READ ME!!!!! READ ME!!!!! READ ME!!!!!
+#
+# Instructions for adding a new unit test rule/task:
+#
+# For WebSpec-based tests, including tests for files that use WebSpec items:
+# 1) Add a new entry in the finder_file_hash, following the existing naming
+#    convention.
+# 2) Add the actual rule, using the hash lookup as the way to get the FileList
+#    value.
+#
+# For Sikuli-based tests, including tests for files that use WebSpec items:
+# 1) Add a new entry in the sikuli_file_hash, following the existing naming
+#    convention.
+# 2) Add the actual rule, using the hash lookup as the way to get the FileList
+#    value.
+#
+# For other types of tests:
+#    Add the actual rule using the FileList directly (i.e. not using any
+#    hash tables. See examples below.
+#
+# TROUBLESHOOTING NOTE:
+#    If you are getting a syntax error when calling rake on this Rakefile,
+#    make sure you have the following set in your environment; if they are not
+#    set, you will get errors:
+#       export JAVA_OPTS=-d32
+#       export JRUBY_OPTS=--1.9
+###############################################################################
+
+# This variable is used to indicate that the Rakefile started the execution
+# sequence. Currently, this is used to determine whether or not to install
+# the SIGINT trap call.
+ENV["USING_RAKE"] = ""
+
+require 'rake'
+require 'rdoc/task'
+require 'rspec/core/rake_task'
+
+# only add to this hash if an actual instantiation of WebSpec exists in the specs
+# to be added.
+finder_file_hash = {
+  :gi_tests => FileList["GameInformer/spec"],
+  :gs_tests => FileList["GameStop/spec"],
+  :gsm_tests => FileList["GameStopMobile/spec"],
+  :impulse_tests => FileList["Impulse/spec"],
+  :pur_tests => FileList["PowerUpRewards/spec"],
+  :wis_tests => FileList["WebInStore/spec"],
+}
+
+desc "Run the GameInformer Finders tests"
+RSpec::Core::RakeTask.new(:gi_tests) do |t|
+  t.pattern = finder_file_hash[:gi_tests]
+  t.rspec_opts = ['-fs']
+end
+
+desc "Run the GameStop Finders tests"
+RSpec::Core::RakeTask.new(:gs_tests) do |t|
+  t.pattern = finder_file_hash[:gs_tests]
+  t.rspec_opts = ['-fs']
+end
+
+desc "Run the GameStopMobile Finders tests"
+RSpec::Core::RakeTask.new(:gsm_tests) do |t|
+  t.pattern = finder_file_hash[:gsm_tests]
+  t.rspec_opts = ['-fs']
+end
+
+desc "Run the Impulse Finders tests"
+RSpec::Core::RakeTask.new(:impulse_tests) do |t|
+  t.pattern = finder_file_hash[:impulse_tests]
+  t.rspec_opts = ['-fs']
+end
+
+desc "Run the PowerUpRewards Finders tests"
+RSpec::Core::RakeTask.new(:pur_tests) do |t|
+  t.pattern = finder_file_hash[:pur_tests]
+  t.rspec_opts = ['-fs']
+end
+
+desc "Run the WebInStore Finders tests"
+RSpec::Core::RakeTask.new(:wis_tests) do |t|
+  t.pattern = finder_file_hash[:wis_tests]
+  t.rspec_opts = ['-fs']
+end
+
+desc "Run the Common Services Finders tests"
+RSpec::Core::RakeTask.new(:services_tests) do |t|
+  t.pattern = ['Common/Services/spec/REST', 'Common/Services/spec/SOAP']
+  t.rspec_opts = ['-fs']
+end
+
+desc "Run the Common Profile Finders tests"
+RSpec::Core::RakeTask.new(:profile_tests) do |t|
+  t.pattern = ['Common/Profile/spec']
+  t.rspec_opts = ['-fs']
+end
+
+
+desc "Run all the Mobile DSL tests"
+task :all_mobile_unit_tests => [:gsm_tests]
+
+desc "Run all the DSL tests"
+task :all_unit_tests => [:gi_tests, :gs_tests, :gsm_tests, :impulse_tests, :pur_tests, :wis_tests, :services_tests, :profile_tests ]
+
+task :default => :all_unit_tests
+
+
+
+# TODO: include currently only appears to function properly using
+# relative paths.  For now we will avoid using QAAUTOMATION env variables.
+RDoc::Task.new(:game_informer_finders_docs) do |rd|
+  rd.main = "GameInformerBrowser"
+  rd.title = "GameInformer Finders"
+  rd.rdoc_dir = "docs/GameInformerDoc"
+  rd.options << "--exclude" << %Q['.*_spec.rb']
+  rd.rdoc_files.include(
+    "GameInformer/src",
+    "Common/Services/src/REST",
+    "Common/Services/src/SOAP",
+    "Common/Profile/src",
+	"Common/src"
+  )
+end
+
+# TODO: include currently only appears to function properly using
+# relative paths.  For now we will avoid using QAAUTOMATION env variables.
+RDoc::Task.new(:game_stop_finders_docs) do |rd|
+  rd.main = "GameStopBrowser"
+  rd.title = "GameStop Finders"
+  rd.rdoc_dir = "docs/GameStopDoc"
+  rd.options << "--exclude" << %Q['.*_spec.rb']
+  rd.rdoc_files.include(
+    "GameStop/src",
+    "Common/Services/src/REST",
+    "Common/Services/src/SOAP",
+    "Common/Profile/src",
+	"Common/src"
+  )
+end
+
+# TODO: include currently only appears to function properly using
+# relative paths.  For now we will avoid using QAAUTOMATION env variables.
+RDoc::Task.new(:game_stop_mobile_finders_docs) do |rd|
+  rd.main = "GameStopMobileBrowser"
+  rd.title = "GameStopMobile Finders"
+  rd.rdoc_dir = "docs/GameStopMobileDoc"
+  rd.options << "--exclude" << %Q['.*_spec.rb']
+  rd.rdoc_files.include(
+    "GameStopMobile/src",
+    "Common/Services/src/REST",
+    "Common/Services/src/SOAP",
+    "Common/Profile/src",
+	"Common/src"
+  )
+end
+
+# TODO: include currently only appears to function properly using
+# relative paths.  For now we will avoid using QAAUTOMATION env variables.
+RDoc::Task.new(:impulse_finders_docs) do |rd|
+  rd.main = "ImpulseBrowser"
+  rd.title = "Impulse Finders"
+  rd.rdoc_dir = "docs/ImpulseDoc"
+  rd.options << "--exclude" << %Q['.*_spec.rb']
+  rd.rdoc_files.include(
+    "Impulse/src",
+    "Common/Services/src/REST",
+    "Common/Services/src/SOAP",
+    "Common/Profile/src",
+	"Common/src"
+  )
+end
+
+# TODO: include currently only appears to function properly using
+# relative paths.  For now we will avoid using QAAUTOMATION env variables.
+RDoc::Task.new(:power_up_rewards_finders_docs) do |rd|
+  rd.main = "PowerUpRewardsBrowser"
+  rd.title = "PowerUpRewards Finders"
+  rd.rdoc_dir = "docs/PowerUpRewardsDoc"
+  rd.options << "--exclude" << %Q['.*_spec.rb']
+  rd.rdoc_files.include(
+    "PowerUpRewards/src",
+    "Common/Services/src/REST",
+    "Common/Services/src/SOAP",
+    "Common/Profile/src",
+	"Common/src"
+  )
+end
+
+# TODO: include currently only appears to function properly using
+# relative paths.  For now we will avoid using QAAUTOMATION env variables.
+RDoc::Task.new(:web_in_store_finders_docs) do |rd|
+  rd.main = "WebInStoreBrowser"
+  rd.title = "WebInStore Finders"
+  rd.rdoc_dir = "docs/WebInStoreDoc"
+  rd.options << "--exclude" << %Q['.*_spec.rb']
+  rd.rdoc_files.include(
+    "WebInStore/src",
+    "Common/Services/src/REST",
+    "Common/Services/src/SOAP",
+    "Common/Profile/src",
+	"Common/src"
+  )
+end
+
+
+
+desc "Create all rdoc"
+task :all_docs => [:game_informer_finders_docs, :game_stop_finders_docs, :game_stop_mobile_finders_docs, :impulse_finders_docs, :power_up_rewards_finders_docs, :web_in_store_finders_docs]

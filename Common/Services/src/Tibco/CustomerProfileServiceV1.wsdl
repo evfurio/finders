@@ -1,0 +1,1344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:ns2="http://schemas.gamestop.com/shared/commonschemas/faults/v1.0" xmlns:ns1="http://schemas.gamestop.com/marketing/customerprofile/customerprofileservice/messagetypes/v1.0" xmlns:ns4="http://schemas.gamestop.com/marketing/customerprofile/v2.0" xmlns:ns3="http://schemas.gamestop.com/marketing/loyaltylifecycle/v1.0" xmlns:tns="http://xmlns.example.com/1361308013535" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://schemas.gamestop.com/shared/commonschemas/v1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns5="http://schemas.gamestop.com/marketing/dataverification/v1.0" xmlns:ns6="http://schemas.gamestop.com/marketing/customerprofile/v1.0" name="Untitled" targetNamespace="http://xmlns.example.com/1361308013535">
+    <wsdl:types>
+        <xs:schema xmlns:common="http://schemas.gamestop.com/shared/commonschemas/v1.0" xmlns:tns="http://schemas.gamestop.com/marketing/loyaltylifecycle/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.gamestop.com/marketing/loyaltylifecycle/v1.0" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://schemas.gamestop.com/shared/commonschemas/v1.0"/>
+            <xs:complexType name="LoyaltyPointsInformation">
+                <xs:sequence>
+                    <xs:element name="AvailablePoints" type="xs:int" minOccurs="0"/>
+                    <xs:element name="LifeTimePointsBalance" type="xs:int" minOccurs="0"/>
+                    <xs:element name="Status" type="common:Status"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.gamestop.com/shared/commonschemas/v1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:complexType name="CultureInfo">
+                <xs:annotation>
+                    <xs:documentation>Comment describing your root element</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="Locale" form="unqualified" type="xs:string"/>
+                    <xs:element name="TimeZone" form="unqualified" type="xs:string"/>
+                    <xs:element name="CountryCode" form="unqualified" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="KeyValuePair">
+                <xs:sequence>
+                    <xs:element name="Key" form="unqualified" type="xs:string"/>
+                    <xs:element name="Value" form="unqualified" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="KeyValuePairs">
+                <xs:sequence>
+                    <xs:element name="KeyValuePair" form="unqualified" nillable="true" type="ns0:KeyValuePair" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MessageHeader">
+                <xs:annotation>
+                    <xs:documentation>Comment describing your root element</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="MachineName" form="unqualified" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="KeyValuePairs" form="unqualified" nillable="true" type="ns0:KeyValuePairs" minOccurs="0"/>
+                    <xs:element name="CultureInfo" form="unqualified" nillable="true" type="ns0:CultureInfo" minOccurs="0"/>
+                    <xs:element name="SecurityToken" form="unqualified" type="ns0:SecurityToken" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SecurityToken">
+                <xs:sequence>
+                    <xs:element name="UserNameToken" form="unqualified" nillable="true" type="ns0:UserNameToken" minOccurs="0"/>
+                    <xs:element name="ClientKey" form="unqualified" nillable="true" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="UserNameToken">
+                <xs:sequence>
+                    <xs:element name="UserName" form="unqualified" type="xs:string" minOccurs="0"/>
+                    <xs:element name="Password" form="unqualified" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="uniqueID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">The representation of a GUID, generally the id of an element.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="MessageHeaders" type="ns0:MessageHeader"/>
+            <xs:complexType name="Phone">
+                <xs:sequence>
+                    <xs:element name="PhoneId" form="unqualified" type="xs:int" minOccurs="0"/>
+                    <xs:element name="PhoneNumber" form="unqualified" nillable="true" type="ns0:PhoneNumber" minOccurs="0"/>
+                    <xs:element name="PhoneNumberType" form="unqualified" nillable="true" type="ns0:PhoneNumberType" minOccurs="0"/>
+                    <xs:element name="ProfileId" form="unqualified" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="PhoneNumber">
+                <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+            <xs:simpleType name="PhoneNumberType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Primary"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="Phones">
+                <xs:sequence>
+                    <xs:element name="Phone" form="unqualified" nillable="true" type="ns0:Phone" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="Gender">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Male"/>
+                    <xs:enumeration value="Female"/>
+                    <xs:enumeration value="Unknown"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="BirthDate">
+                <xs:sequence>
+                    <xs:element name="BirthMonth" form="unqualified" nillable="true" type="xs:int" minOccurs="0"/>
+                    <xs:element name="BirthDay" form="unqualified" nillable="true" type="xs:int" minOccurs="0"/>
+                    <xs:element name="BirthYear" form="unqualified" nillable="true" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Status">
+                <xs:sequence>
+                    <xs:element name="StatusCode" form="unqualified" type="xs:string"/>
+                    <xs:element name="StatusReason" form="unqualified" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:cs1="http://schemas.gamestop.com/shared/commonschemas/v1.0" xmlns:cp2="http://schemas.gamestop.com/marketing/customerprofile/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.gamestop.com/marketing/customerprofile/v2.0" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://schemas.gamestop.com/shared/commonschemas/v1.0"/>
+            <xs:simpleType name="CardStatus">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Unknown"/>
+                    <xs:enumeration value="Active"/>
+                    <xs:enumeration value="Inactive"/>
+                    <xs:enumeration value="Terminated"/>
+                    <xs:enumeration value="Deactivated"/>
+                    <xs:enumeration value="Cancelled"/>
+                    <xs:enumeration value="MergeCancelled"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="Membership">
+                <xs:sequence>
+                    <xs:element name="CreatedDate" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element name="EffectiveDate" nillable="true" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element name="EndDate" nillable="true" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element name="ExpirationDate" nillable="true" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element name="MembershipActivities" nillable="true" type="cp2:MembershipActivities" minOccurs="0"/>
+                    <xs:element name="MembershipCards" nillable="true" type="cp2:MembershipCards" minOccurs="0"/>
+                    <xs:element name="MembershipId" type="xs:int" minOccurs="0"/>
+                    <xs:element name="MembershipNumber" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="MembershipProgram" nillable="true" type="cp2:MembershipProgram" minOccurs="0"/>
+                    <xs:element name="MembershipStatus" type="cp2:MembershipStatus" minOccurs="0"/>
+                    <xs:element name="ModifiedDate" nillable="true" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element name="OpenIdClaimedIdentifier" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="MembershipExtension" type="cp2:MembershipExtension" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipActivities">
+                <xs:sequence>
+                    <xs:element name="MembershipActivity" nillable="true" type="cp2:MembershipActivity" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipActivity">
+                <xs:sequence>
+                    <xs:element name="ActivityDescription" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="ActivityId" type="xs:int" minOccurs="0"/>
+                    <xs:element name="MembershipId" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipCard">
+                <xs:sequence>
+                    <xs:element name="CancellationDate" nillable="true" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element name="CardDescription" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="CardNumber" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="CardStatus" type="cp2:CardStatus" minOccurs="0"/>
+                    <xs:element name="CreatedDate" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element name="MembershipCardId" type="xs:int" minOccurs="0"/>
+                    <xs:element name="MembershipId" type="xs:int" minOccurs="0"/>
+                    <xs:element name="IsTempCard" nillable="true" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipCardSearch">
+                <xs:sequence>
+                    <xs:element name="CardNumber" nillable="true" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipCards">
+                <xs:sequence>
+                    <xs:element name="MembershipCard" nillable="true" type="cp2:MembershipCard" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipExtension">
+                <xs:sequence>
+                    <xs:element name="NextTierLevelUp" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="NextTierLevelUpBonusSKU" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="LoyaltyBonusCreditSKU" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="LoyaltySpecialSKU" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="Points" nillable="true" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipProgram">
+                <xs:sequence>
+                    <xs:element name="Attributes" nillable="true" type="cp2:MembershipProgramAttributes" minOccurs="0"/>
+                    <xs:element name="MembershipProgramId" type="xs:int" minOccurs="0"/>
+                    <xs:element name="Name" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="VendorId" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipProgramAttribute">
+                <xs:sequence>
+                    <xs:element name="KeyValuePair" type="cs1:KeyValuePair" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipProgramAttributes">
+                <xs:sequence>
+                    <xs:element name="MembershipProgramAttribute" nillable="true" type="cp2:MembershipProgramAttribute" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipPrograms">
+                <xs:sequence>
+                    <xs:element name="MembershipProgram" nillable="true" type="cp2:MembershipProgram" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipSearch">
+                <xs:sequence>
+                    <xs:element name="ExpirationDate" nillable="true" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element name="MembershipCard" nillable="true" type="cp2:MembershipCardSearch" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="MembershipStatus">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Unspecified"/>
+                    <xs:enumeration value="Activated"/>
+                    <xs:enumeration value="Inactive"/>
+                    <xs:enumeration value="Terminated"/>
+                    <xs:enumeration value="Deactivated"/>
+                    <xs:enumeration value="Cancelled"/>
+                    <xs:enumeration value="Returned"/>
+                    <xs:enumeration value="MergeCancelled"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="CardStatus" nillable="true" type="cp2:CardStatus"/>
+            <xs:element name="Membership" nillable="true" type="cp2:Membership"/>
+            <xs:element name="MembershipActivities" nillable="true" type="cp2:MembershipActivities"/>
+            <xs:element name="MembershipActivity" nillable="true" type="cp2:MembershipActivity"/>
+            <xs:element name="MembershipCard" nillable="true" type="cp2:MembershipCard"/>
+            <xs:element name="MembershipCards" nillable="true" type="cp2:MembershipCards"/>
+            <xs:element name="MembershipProgram" nillable="true" type="cp2:MembershipProgram"/>
+            <xs:element name="MembershipProgramAttribute" nillable="true" type="cp2:MembershipProgramAttribute"/>
+            <xs:element name="MembershipProgramAttributes" nillable="true" type="cp2:MembershipProgramAttributes"/>
+            <xs:element name="MembershipPrograms" nillable="true" type="cp2:MembershipPrograms"/>
+            <xs:element name="MembershipStatus" nillable="true" type="cp2:MembershipStatus"/>
+        </xs:schema>
+        <xs:schema xmlns:id="http://schemas.gamestop.com/shared/commonschemas/v1.0" xmlns:tns="http://schemas.gamestop.com/shared/commonschemas/faults/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.gamestop.com/shared/commonschemas/faults/v1.0" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://schemas.gamestop.com/shared/commonschemas/v1.0"/>
+            <xs:complexType name="ExpectedFaultDetail">
+                <xs:sequence>
+                    <xs:element name="FaultCode" nillable="true" type="xs:string"/>
+                    <xs:element name="Message" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ReceiverFaultDetail">
+                <xs:sequence>
+                    <xs:element name="Message" nillable="true" type="xs:string"/>
+                    <xs:element name="Description" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="CorrelationId" type="id:uniqueID" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SenderFaultDetail">
+                <xs:sequence>
+                    <xs:element name="CorrelationId" type="id:uniqueID" minOccurs="0"/>
+                    <xs:element name="Message" nillable="true" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ExpectedFaultDetail" type="tns:ExpectedFaultDetail"/>
+            <xs:element name="ReceiverFaultDetail" nillable="true" type="tns:ReceiverFaultDetail"/>
+            <xs:element name="SenderFaultDetail" type="tns:SenderFaultDetail"/>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.gamestop.com/marketing/customerprofile/customerprofileservice/messagetypes/v1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://schemas.gamestop.com/marketing/customerprofile/v1.0"/>
+            <xs:import namespace="http://schemas.gamestop.com/marketing/customerprofile/v1.0"/>
+            <xs:import namespace="http://schemas.gamestop.com/marketing/customerprofile/v2.0"/>
+            <xs:import namespace="http://schemas.gamestop.com/marketing/customerprofile/v1.0"/>
+            <xs:import namespace="http://schemas.gamestop.com/marketing/customerprofile/v1.0"/>
+            <xs:import namespace="http://schemas.gamestop.com/marketing/customerprofile/v1.0"/>
+            <xs:import namespace="http://schemas.gamestop.com/shared/commonschemas/v1.0"/>
+            <xs:import namespace="http://schemas.gamestop.com/marketing/loyaltylifecycle/v1.0"/>
+            <xs:complexType name="DigitalLocker">
+                <xs:sequence>
+                    <xs:element ref="ns6:LockerItem" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Describes a Digital Locker item</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DigitalLockerRequest"/>
+            <xs:complexType name="ExtendedProfileRequest">
+                <xs:sequence>
+                    <xs:element name="MembershipsRequest" nillable="true" type="ns1:MembershipsRequest" minOccurs="0"/>
+                    <xs:element name="GameLibraryRequest" nillable="true" type="ns1:GameLibraryRequest" minOccurs="0"/>
+                    <xs:element name="ReservationsRequest" nillable="true" type="ns1:ReservationsRequest" minOccurs="0"/>
+                    <xs:element name="DigitalLockerRequest" nillable="true" type="ns1:DigitalLockerRequest" minOccurs="0"/>
+                    <xs:element name="PointsInformationRequest" nillable="true" type="ns1:PointsInformationRequest" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ExtendedProfileResponse">
+                <xs:sequence>
+                    <xs:element name="Memberships" nillable="true" type="ns1:Memberships" minOccurs="0"/>
+                    <xs:element name="GameLibrary" nillable="true" type="ns1:GameLibrary" minOccurs="0"/>
+                    <xs:element name="Reservations" nillable="true" type="ns1:Reservations" minOccurs="0"/>
+                    <xs:element name="DigitalLocker" nillable="true" type="ns1:DigitalLocker" minOccurs="0"/>
+                    <xs:element name="LoyaltyPointsInformation" nillable="true" type="ns3:LoyaltyPointsInformation" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="GameLibrary">
+                <xs:sequence>
+                    <xs:element ref="ns6:GameLibraryItem" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Describes a game library item</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="GameLibraryRequest"/>
+            <xs:complexType name="Memberships">
+                <xs:sequence>
+                    <xs:element ref="ns4:Membership" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MembershipsRequest"/>
+            <xs:complexType name="PointsInformationRequest"/>
+            <xs:complexType name="ProfileExtended">
+                <xs:complexContent>
+                    <xs:extension base="ns6:Profile">
+                        <xs:sequence>
+                            <xs:element name="ExtendedProfiles" nillable="true" type="ns1:ExtendedProfileResponse" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="Profiles">
+                <xs:sequence>
+                    <xs:element name="Profile" type="ns1:ProfileExtended" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Reservations">
+                <xs:sequence>
+                    <xs:element ref="ns6:Reservation" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Describes a reservation item</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ReservationsRequest"/>
+            <xs:element name="CreateAddressRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Address" type="ns6:Address"/>
+                        <xs:element name="OpenIdClaimedIdentifier">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreateAddressResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="AddressId" type="xs:int"/>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreatePhoneRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="OpenIdClaimedIdentifier">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="Phone" type="ns0:Phone"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreatePhoneResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PhoneId">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int"/>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreatePreferredStoreRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PreferredStore" type="ns6:PreferredStore"/>
+                        <xs:element name="OpenIdClaimedIdentifier">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreatePreferredStoreResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PreferredStoreId">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int"/>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreateProfileRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns6:Profile"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreateProfileResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ProfileId" type="xs:int" minOccurs="0"/>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DeleteAddressRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="AddressID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int"/>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DeleteAddressResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="AddressId" type="xs:int" minOccurs="0"/>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DeletePhoneRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PhoneID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int"/>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DeletePhoneResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DeletePreferredStoreRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PreferredStoreID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int"/>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DeletePreferredStoreResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetExtendedProfilesByOpenIDRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="OpenIdClaimedIdentifier" type="xs:string"/>
+                        <xs:element name="ExtendedProfileRequests" nillable="true" type="ns1:ExtendedProfileRequest" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetExtendedProfilesByOpenIDResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ExtendedProfiles" nillable="true" type="ns1:ExtendedProfileResponse" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetVersionRequest">
+                <xs:complexType/>
+            </xs:element>
+            <xs:element name="GetVersionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="GetVersionResult" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SearchProfileByEmailRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="EmailAddress">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="[A-Za-z0-9_]+([-+.'][A-Za-z0-9_]+)*@[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*\.[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="ExtendedProfileRequests" nillable="true" type="ns1:ExtendedProfileRequest" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SearchProfileByOpenIDRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="OpenIdClaimedIdentifier">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="ExtendedProfileRequests" nillable="true" type="ns1:ExtendedProfileRequest" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SearchProfileResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Profiles" type="ns1:Profiles" minOccurs="0"/>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdateAddressRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Address" type="ns6:Address"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdateAddressResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="AddressId" type="xs:int" minOccurs="0"/>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdatePhoneRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Phone" type="ns0:Phone"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdatePhoneResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdatePreferredStoreRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PreferredStore" type="ns6:PreferredStore"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdatePreferredStoreResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdateProfileRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns6:UpdateProfile"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdateProfileResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="MembershipId" nillable="true" type="xs:int" minOccurs="0"/>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:common="http://schemas.gamestop.com/shared/commonschemas/v1.0" xmlns:tns="http://schemas.gamestop.com/marketing/dataverification/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.gamestop.com/marketing/dataverification/v1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="DataVerifications" nillable="true">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="EmailVerificationStatus" type="xs:boolean" minOccurs="0"/>
+                        <xs:element name="AddressVerificationStatus" type="xs:boolean" minOccurs="0"/>
+                        <xs:element name="PhoneVerificationStatus" type="xs:boolean" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Overrides" nillable="true">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="EmailAddress" type="xs:boolean" minOccurs="0"/>
+                        <xs:element name="Address" type="xs:boolean" minOccurs="0"/>
+                        <xs:element name="Phone" type="xs:boolean" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.gamestop.com/marketing/customerprofile/v1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://schemas.gamestop.com/shared/commonschemas/v1.0"/>
+            <xs:import namespace="http://schemas.gamestop.com/marketing/dataverification/v1.0"/>
+            <xs:complexType name="Address">
+                <xs:sequence>
+                    <xs:element name="AddressID" form="unqualified" type="xs:int" minOccurs="0"/>
+                    <xs:element name="AddressType" form="unqualified" type="ns6:AddressType"/>
+                    <xs:element name="AddressLine1" form="unqualified" type="xs:string"/>
+                    <xs:element name="AddressLine2" form="unqualified" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="City" form="unqualified" type="xs:string"/>
+                    <xs:element name="StateOrProvince" form="unqualified" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="PostalCode" form="unqualified" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="Country" form="unqualified" type="xs:string"/>
+                    <xs:element name="ProfileId" form="unqualified" type="xs:int" minOccurs="0"/>
+                    <xs:element name="RecipientFirstName" form="unqualified" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="RecipientLastName" form="unqualified" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="RecipientPhoneNumber" form="unqualified" type="xs:string" minOccurs="0"/>
+                    <xs:element name="IsDefault" form="unqualified" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="IsValidated" form="unqualified" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="AddressType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Shipping"/>
+                    <xs:enumeration value="Billing"/>
+                    <xs:enumeration value="Mailing"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="Addresses">
+                <xs:sequence>
+                    <xs:element name="Address" form="unqualified" nillable="true" type="ns6:Address" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PreferredStore">
+                <xs:sequence>
+                    <xs:element name="IsHomeStore" form="unqualified" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="PreferredStoreId" form="unqualified" nillable="true" type="xs:int" minOccurs="0"/>
+                    <xs:element name="StoreNumber" form="unqualified" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PreferredStores">
+                <xs:sequence>
+                    <xs:element name="PreferredStore" form="unqualified" nillable="true" type="ns6:PreferredStore" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Profile">
+                <xs:sequence>
+                    <xs:element name="ProfileID" type="xs:int" minOccurs="0"/>
+                    <xs:element name="FirstName" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="MiddleName" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="LastName" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="EmailAddress" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="EmailIsInvalid" nillable="true" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="DisplayName" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="BirthDate" nillable="true" type="ns0:BirthDate" minOccurs="0"/>
+                    <xs:element name="Gender" nillable="true" type="ns0:Gender" minOccurs="0"/>
+                    <xs:element name="CustomerKey" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="MembershipId" nillable="true" type="xs:int" minOccurs="0"/>
+                                <xs:element name="OpenIdClaimedIdentifier" nillable="true" type="xs:string" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Addresses" nillable="true" type="ns6:Addresses" minOccurs="0"/>
+                    <xs:element name="Phones" nillable="true" type="ns0:Phones" minOccurs="0"/>
+                    <xs:element name="PreferredStores" nillable="true" type="ns6:PreferredStores" minOccurs="0"/>
+                    <xs:element ref="ns5:Overrides" minOccurs="0"/>
+                    <xs:element ref="ns5:DataVerifications" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Profiles">
+                <xs:sequence>
+                    <xs:element name="Profile" type="ns6:Profile" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Profile" type="ns6:Profile"/>
+            <xs:complexType name="UpdateProfile">
+                <xs:sequence>
+                    <xs:element name="OpenIdClaimedIdentifier" type="xs:string"/>
+                    <xs:element name="FirstName" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="MiddleName" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="LastName" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="EmailAddress">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:pattern value="[A-Za-z0-9_]+([-+.'][A-Za-z0-9_]+)*@[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*\.[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="DisplayName" nillable="true" type="xs:string" minOccurs="0"/>
+                    <xs:element name="BirthDate" nillable="true" type="ns0:BirthDate" minOccurs="0"/>
+                    <xs:element name="Gender" nillable="true" type="ns0:Gender" minOccurs="0"/>
+                    <xs:element ref="ns5:Overrides" minOccurs="0"/>
+                    <xs:element ref="ns5:DataVerifications" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="UpdateProfiles">
+                <xs:sequence>
+                    <xs:element name="UpdateProfile" type="ns6:UpdateProfile" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="UpdateProfile" type="ns6:UpdateProfile"/>
+            <xs:complexType name="GameLibraryItem">
+                <xs:complexContent>
+                    <xs:extension base="ns6:GameLibraryItemUpdatableInfo">
+                        <xs:sequence>
+                            <xs:element name="LastModifiedDate" form="unqualified" type="xs:dateTime" minOccurs="0"/>
+                            <xs:element name="ListSuggestion" form="unqualified" nillable="true" type="ns6:GameLibraryItemListSuggestion" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="GameLibraryItemListSuggestion">
+                <xs:sequence>
+                    <xs:element name="List" form="unqualified" type="ns6:GameLibraryItemListType" minOccurs="0"/>
+                    <xs:element name="TriggerEvent" form="unqualified" type="ns6:GameLibraryItemListSuggestionTriggerEvent">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <DefaultValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/" EmitDefaultValue="false"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TriggerEventDate" form="unqualified" type="xs:dateTime" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="GameLibraryItemListSuggestionTriggerEvent">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Purchase">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="Return">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="Trade">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="GameLibraryItemListType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CurrentlyOwn">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PreviouslyOwned">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="WishToOwn">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="None">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="GameLibraryItemUpdatableInfo">
+                <xs:sequence>
+                    <xs:element name="List" form="unqualified" type="ns6:GameLibraryItemListType">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <DefaultValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/" EmitDefaultValue="false"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ProductID" form="unqualified" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="GameLibraryItem" nillable="true" type="ns6:GameLibraryItem">
+                <xs:annotation>
+                    <xs:documentation>Describes a game library item</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="GameLibraryItemListSuggestion" nillable="true" type="ns6:GameLibraryItemListSuggestion"/>
+            <xs:element name="GameLibraryItemUpdatableInfo" nillable="true" type="ns6:GameLibraryItemUpdatableInfo"/>
+            <xs:complexType name="Reservation">
+                <xs:sequence>
+                    <xs:element name="Date" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element name="ProductID" type="xs:int" minOccurs="0"/>
+                    <xs:element name="Quantity" type="xs:int" minOccurs="0"/>
+                    <xs:element name="ReservedStoreNumber" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Reservation" type="ns6:Reservation">
+                <xs:annotation>
+                    <xs:documentation>Describes a reservation item</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:complexType name="LockerItem">
+                <xs:sequence>
+                    <xs:element name="AllSparkID" type="xs:long"/>
+                    <xs:element name="ClientReferenceCode" nillable="true" type="xs:string"/>
+                    <xs:element name="OrderRequestGUID" type="ns0:uniqueID"/>
+                    <xs:element name="PurchaseDate" type="xs:dateTime"/>
+                    <xs:element name="Title" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="LockerItem" type="ns6:LockerItem">
+                <xs:annotation>
+                    <xs:documentation>Describes a Digital Locker item</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="CustomerProfileService-V1">
+        <wsdl:port name="CustomerProfileService_V1" binding="tns:CustomerProfileService_V1Binding">
+            <soap:address location="http://localhost:8106/Marketing/CustomerProfile/CustomerProfileServiceV1"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="CustomerProfileService_V1">
+        <wsdl:operation name="UpdateAddress">
+            <wsdl:input message="tns:UpdateAddressRequest"/>
+            <wsdl:output message="tns:UpdateAddressResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="DeletePreferredStore">
+            <wsdl:input message="tns:DeletePreferredStoreRequest"/>
+            <wsdl:output message="tns:DeletePreferredStoreResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="CreatePreferredStore">
+            <wsdl:input message="tns:CreatePreferredStoreRequest"/>
+            <wsdl:output message="tns:CreatePreferredStoreResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="SearchProfileByOpenID">
+            <wsdl:input message="tns:SearchProfileByOpenIDRequest"/>
+            <wsdl:output message="tns:SearchProfileByOpenIDResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="CreateProfile">
+            <wsdl:input message="tns:CreateProfileRequest"/>
+            <wsdl:output message="tns:CreateProfileResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="DeleteAddress">
+            <wsdl:input message="tns:DeleteAddressRequest"/>
+            <wsdl:output message="tns:DeleteAddressResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetVersion">
+            <wsdl:input message="tns:GetVersionRequest"/>
+            <wsdl:output message="tns:GetVersionResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateProfile">
+            <wsdl:input message="tns:UpdateProfileRequest"/>
+            <wsdl:output message="tns:UpdateProfileResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="UpdatePhone">
+            <wsdl:input message="tns:UpdatePhoneRequest"/>
+            <wsdl:output message="tns:UpdatePhoneResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="CreatePhone">
+            <wsdl:input message="tns:CreatePhoneRequest"/>
+            <wsdl:output message="tns:CreatePhoneResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="UpdatePreferredStore">
+            <wsdl:input message="tns:UpdatePreferredStoreRequest"/>
+            <wsdl:output message="tns:UpdatePreferredStoreResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetExtendedProfilesByOpenID">
+            <wsdl:input message="tns:GetExtendedProfilesByOpenIDRequest"/>
+            <wsdl:output message="tns:GetExtendedProfilesByOpenIDResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="SearchProfileByEmail">
+            <wsdl:input message="tns:SearchProfileByEmailRequest"/>
+            <wsdl:output message="tns:SearchProfileByEmailResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="DeletePhone">
+            <wsdl:input message="tns:DeletePhoneRequest"/>
+            <wsdl:output message="tns:DeletePhoneResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+        <wsdl:operation name="CreateAddress">
+            <wsdl:input message="tns:CreateAddressRequest"/>
+            <wsdl:output message="tns:CreateAddressResponse"/>
+            <wsdl:fault name="ExpectedFaultDetail" message="tns:ExpectedFaultDetail"/>
+            <wsdl:fault name="ReceiverFaultDetail" message="tns:ReceiverFaultDetail"/>
+            <wsdl:fault name="SenderFaultDetail" message="tns:SenderFaultDetail"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CustomerProfileService_V1Binding" type="tns:CustomerProfileService_V1">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="UpdateAddress">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/UpdateAddress"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="UpdateAddressRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="UpdateAddressResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="DeletePreferredStore">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/DeletePreferredStore"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="DeletePreferredStoreRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="DeletePreferredStoreResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="CreatePreferredStore">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/CreatePreferredStore"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="CreatePreferredStoreRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="CreatePreferredStoreResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="SearchProfileByOpenID">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/SearchProfileByOpenID"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="SearchProfileByOpenIDRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="SearchProfileByOpenIDResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="CreateProfile">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/CreateProfile"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="CreateProfileRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="CreateProfileResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="DeleteAddress">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/DeleteAddress"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="DeleteAddressRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="DeleteAddressResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetVersion">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/GetVersion"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="GetVersionRequest"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="GetVersionResponse"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateProfile">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/UpdateProfile"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="UpdateProfileRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="UpdateProfileResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="UpdatePhone">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/UpdatePhone"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="UpdatePhoneRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="UpdatePhoneResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="CreatePhone">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/CreatePhone"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="CreatePhoneRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="CreatePhoneResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="UpdatePreferredStore">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/UpdatePreferredStore"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="UpdatePreferredStoreRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="UpdatePreferredStoreResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetExtendedProfilesByOpenID">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/GetExtendedProfilesByOpenID"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="GetExtendedProfilesByOpenIDRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="GetExtendedProfilesByOpenIDResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="SearchProfileByEmail">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/SearchProfileByEmail"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="SearchProfileByEmailRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="SearchProfileByEmailResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="DeletePhone">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/DeletePhone"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="DeletePhoneRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="DeletePhoneResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="CreateAddress">
+            <soap:operation style="document" soapAction="/Marketing/CustomerProfile/CustomerProfileService/CreateAddress"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="CreateAddressRequest"/>
+                <soap:header use="literal" message="tns:MessageHeaders" part="MessageHeaders"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="CreateAddressResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="ExpectedFaultDetail">
+                <soap:fault use="literal" name="ExpectedFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="ReceiverFaultDetail">
+                <soap:fault use="literal" name="ReceiverFaultDetail"/>
+            </wsdl:fault>
+            <wsdl:fault name="SenderFaultDetail">
+                <soap:fault use="literal" name="SenderFaultDetail"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="MessageHeaders">
+        <wsdl:part name="MessageHeaders" element="ns0:MessageHeaders"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateAddressRequest">
+        <wsdl:part name="UpdateAddressRequest" element="ns1:UpdateAddressRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateAddressResponse">
+        <wsdl:part name="UpdateAddressResponse" element="ns1:UpdateAddressResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ExpectedFaultDetail">
+        <wsdl:part name="ExpectedFaultDetail" element="ns2:ExpectedFaultDetail"/>
+    </wsdl:message>
+    <wsdl:message name="ReceiverFaultDetail">
+        <wsdl:part name="ReceiverFaultDetail" element="ns2:ReceiverFaultDetail"/>
+    </wsdl:message>
+    <wsdl:message name="SenderFaultDetail">
+        <wsdl:part name="SenderFaultDetail" element="ns2:SenderFaultDetail"/>
+    </wsdl:message>
+    <wsdl:message name="DeletePreferredStoreRequest">
+        <wsdl:part name="DeletePreferredStoreRequest" element="ns1:DeletePreferredStoreRequest"/>
+    </wsdl:message>
+    <wsdl:message name="DeletePreferredStoreResponse">
+        <wsdl:part name="DeletePreferredStoreResponse" element="ns1:DeletePreferredStoreResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreatePreferredStoreRequest">
+        <wsdl:part name="CreatePreferredStoreRequest" element="ns1:CreatePreferredStoreRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreatePreferredStoreResponse">
+        <wsdl:part name="CreatePreferredStoreResponse" element="ns1:CreatePreferredStoreResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchProfileByOpenIDRequest">
+        <wsdl:part name="SearchProfileByOpenIDRequest" element="ns1:SearchProfileByOpenIDRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchProfileByOpenIDResponse">
+        <wsdl:part name="SearchProfileByOpenIDResponse" element="ns1:SearchProfileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreateProfileRequest">
+        <wsdl:part name="CreateProfileRequest" element="ns1:CreateProfileRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateProfileResponse">
+        <wsdl:part name="CreateProfileResponse" element="ns1:CreateProfileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="DeleteAddressRequest">
+        <wsdl:part name="DeleteAddressRequest" element="ns1:DeleteAddressRequest"/>
+    </wsdl:message>
+    <wsdl:message name="DeleteAddressResponse">
+        <wsdl:part name="DeleteAddressResponse" element="ns1:DeleteAddressResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetVersionRequest">
+        <wsdl:part name="GetVersionRequest" element="ns1:GetVersionRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetVersionResponse">
+        <wsdl:part name="GetVersionResponse" element="ns1:GetVersionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateProfileRequest">
+        <wsdl:part name="UpdateProfileRequest" element="ns1:UpdateProfileRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateProfileResponse">
+        <wsdl:part name="UpdateProfileResponse" element="ns1:UpdateProfileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="UpdatePhoneRequest">
+        <wsdl:part name="UpdatePhoneRequest" element="ns1:UpdatePhoneRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UpdatePhoneResponse">
+        <wsdl:part name="UpdatePhoneResponse" element="ns1:UpdatePhoneResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreatePhoneRequest">
+        <wsdl:part name="CreatePhoneRequest" element="ns1:CreatePhoneRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreatePhoneResponse">
+        <wsdl:part name="CreatePhoneResponse" element="ns1:CreatePhoneResponse"/>
+    </wsdl:message>
+    <wsdl:message name="UpdatePreferredStoreRequest">
+        <wsdl:part name="UpdatePreferredStoreRequest" element="ns1:UpdatePreferredStoreRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UpdatePreferredStoreResponse">
+        <wsdl:part name="UpdatePreferredStoreResponse" element="ns1:UpdatePreferredStoreResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetExtendedProfilesByOpenIDRequest">
+        <wsdl:part name="GetExtendedProfilesByOpenIDRequest" element="ns1:GetExtendedProfilesByOpenIDRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetExtendedProfilesByOpenIDResponse">
+        <wsdl:part name="GetExtendedProfilesByOpenIDResponse" element="ns1:GetExtendedProfilesByOpenIDResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchProfileByEmailRequest">
+        <wsdl:part name="SearchProfileByEmailRequest" element="ns1:SearchProfileByEmailRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchProfileByEmailResponse">
+        <wsdl:part name="SearchProfileByEmailResponse" element="ns1:SearchProfileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="DeletePhoneRequest">
+        <wsdl:part name="DeletePhoneRequest" element="ns1:DeletePhoneRequest"/>
+    </wsdl:message>
+    <wsdl:message name="DeletePhoneResponse">
+        <wsdl:part name="DeletePhoneResponse" element="ns1:DeletePhoneResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreateAddressRequest">
+        <wsdl:part name="CreateAddressRequest" element="ns1:CreateAddressRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateAddressResponse">
+        <wsdl:part name="CreateAddressResponse" element="ns1:CreateAddressResponse"/>
+    </wsdl:message>
+</wsdl:definitions>
